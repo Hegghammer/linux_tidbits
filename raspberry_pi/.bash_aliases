@@ -4,7 +4,7 @@ alias ll='exa -alFh'
 alias lll='exa -abghHliS'
 alias tr='exa --tree --level=2'
 alias tree='exa --tree --level=2 --long'
-alias cat='batcat' # requires bat
+alias cat='bat' # requires bat
 alias fpath='readlink -f'
 alias c='clear'
 alias e='exit'
@@ -19,7 +19,7 @@ alias purge='sudo apt-get --purge remove'
 
 # Maintenance
 alias rm=trash
-alias empty='sudo trash-empty'
+alias empty='sudo trash-empty' # requires trash-cli
 alias emptydl='cd ~/Downloads && sudo rm -Rf *'
 
 # Inspection
@@ -31,9 +31,9 @@ alias specs='inxi -a'
 
 # Files
 alias n='nano'
-alias edal='nano ~/.bash_aliases'
-alias rc='nano ~/.bashrc'
-alias pf='nano ~/.bash_profile'
+alias edal='sudo nano ~/.bash_aliases'
+alias rc='sudo nano ~/.bashrc'
+alias pf='sudo nano ~/.bash_profile'
 alias rf=". ~/.bashrc"
 
 # Navigation
