@@ -13,8 +13,8 @@ alias sd='sudo shutdown now'
 
 # Packages
 alias up='sudo apt -y update && sudo apt -y full-upgrade'
-alias install='sudo apt -y install'
-alias remove='sudo apt -y remove'
+alias in='sudo apt -y install'
+alias rem='sudo apt -y remove'
 alias purge='sudo apt-get --purge remove'
 
 # Maintenance
@@ -23,11 +23,15 @@ alias empty='sudo trash-empty' # requires trash-cli
 alias emptydl='cd ~/Downloads && sudo rm -Rf *'
 
 # Inspection
-alias fl='filelight'
+alias d='ncdu'
 alias df='df -h'
 alias fw='sudo ufw status numbered'
 alias temp='/opt/vc/bin/vcgencmd measure_temp'
 alias specs='inxi -a'
+alias speed='sudo hdparm -Tt'
+alias ldisk='sudo lsblk -a'
+alias lldisk='sudo fdisk -l'
+alias myip='curl https://ipecho.net/plain ; echo'
 
 # Files
 alias n='nano'
@@ -40,8 +44,5 @@ alias rf=". ~/.bashrc"
 alias dl='cd ~/Downloads'
 alias rt='cd /'
 
-function myip(){
-   myip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-   echo "My WAN/Public IP address: ${myip}"
-}
+
 
