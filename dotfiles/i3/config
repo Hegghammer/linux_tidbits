@@ -10,11 +10,13 @@
 # - and forum posts here and there.
 # 
 # Prerequisites: 
-# - Core: Polybar, Picom, Rofi, Nitrogen, Pulseaudio, Inconsolata font, 
+# - Core: xfce-power-manager, Polybar, Picom, Rofi, Nitrogen, Pulseaudio, Inconsolata font.
 # - Supplementary: Nextcloud, Terminator, Vivaldi, Thunar, RStudio, Atom, Signal, Spectacle, Htop, Glances, nmtui, 
 #
 # ==========================================
 
+# Power manager (mainly for laptops)
+exex --no-startup-id xfce-power-manager
 
 # ===== Background image
 exec --no-startup-id nitrogen --restore
@@ -35,6 +37,7 @@ set $mod Mod4
 set $myTerm terminator
 set $myBrowser vivaldi-stable
 set $myFileManager thunar
+set $myEditor atom
 
 # ===== Window title font 
 font pango:Inconsolata 10
@@ -63,7 +66,7 @@ bindsym $mod+Return exec $myTerm
 bindsym Control+Shift+w exec $myBrowser
 bindsym Control+Shift+f exec $myFileManager
 bindsym Control+Shift+r exec rstudio
-bindsym Control+Shift+a exec atom
+bindsym Control+Shift+a exec $myEditor
 bindsym Control+Shift+g exec signal-desktop
 bindsym Ctrl+Shift+1 exec $myTerm -e htop
 bindsym Ctrl+Shift+2 exec $myTerm -e glances

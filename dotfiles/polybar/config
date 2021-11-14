@@ -19,6 +19,10 @@ main_foreground = #000000
 foreground-alt = #555
 # orange
 contrast = #ffb52a
+
+# light grey
+contrast2 = #CC73715e
+
 # dark pink
 secondary = #e60053
 # green
@@ -64,7 +68,7 @@ modules-right = memory cpu temperature wired-network wireless-network pulseaudio
 
 tray-position = right
 tray-padding = 2
-tray-background =  ${colors.contrast}
+tray-background =  ${colors.contrast2}
 
 #;wm-restack = bspwm
 #wm-restack = i3
