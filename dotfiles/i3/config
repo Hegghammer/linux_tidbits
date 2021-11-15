@@ -65,6 +65,8 @@ bindsym Control+Shift+f exec $myFileManager
 bindsym Control+Shift+r exec rstudio
 bindsym Control+Shift+a exec atom
 bindsym Control+Shift+g exec signal-desktop
+bindsym Control+Shift+z exec zotero
+bindsym Control+Shift+j exec joplin-desktop                      
 bindsym Ctrl+Shift+1 exec $myTerm -e htop
 bindsym Ctrl+Shift+2 exec $myTerm -e glances
 bindsym Ctrl+Shift+3 exec $myTerm -e nmtui
@@ -120,9 +122,9 @@ set $ws4 "4:write "
 set $ws5 "5:code "
 set $ws6 "6:media "
 set $ws7 "7:social "
-set $ws8 "8:misc"
-set $ws9 "9"
-set $ws10 "10"
+set $ws8 "8:joplin"
+set $ws9 "9:zotero"
+set $ws10 "10:misc"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
