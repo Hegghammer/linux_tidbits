@@ -68,8 +68,8 @@ bindsym Control+Shift+f exec $myFileManager
 bindsym Control+Shift+r exec rstudio
 bindsym Control+Shift+a exec $myEditor
 bindsym Control+Shift+g exec signal-desktop
-bindsym Control+Shift+z exec zotero
-bindsym Control+Shift+j exec joplin-desktop                      
+bindsym Control+Shift+z exec /opt/zotero/zotero
+bindsym Control+Shift+j exec ~/.joplin/Joplin-2.5.12.AppImage                      
 bindsym Ctrl+Shift+1 exec $myTerm -e htop
 bindsym Ctrl+Shift+2 exec $myTerm -e glances
 bindsym Ctrl+Shift+3 exec $myTerm -e nmtui
