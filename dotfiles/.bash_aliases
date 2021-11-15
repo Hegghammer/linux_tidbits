@@ -3,7 +3,7 @@
 #
 # Thomas Hegghammer
 #
-# Prerequisites: exa, tree, trash-cli, ncdu, ufw, vcgencmd, inxi, hdparm, xclip, nmap
+# Prerequisites: exa, tree, trash-cli, ncdu, ufw, vcgencmd, inxi, hdparm, xclip, nmap, htop, glances
 #
 # ===============
 
@@ -40,6 +40,8 @@ alias fw='sudo ufw status numbered'
 alias temp='/opt/vc/bin/vcgencmd measure_temp'
 alias specs='inxi -a'
 alias speed='sudo hdparm -Tt'
+alias g='glances'
+alias h='htop'
 
 # Networking
 alias myip='curl https://ipecho.net/plain ; echo'
