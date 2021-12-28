@@ -3,8 +3,8 @@
 #
 # Thomas Hegghammer
 #
-# Prerequisites: exa, tree, trash-cli, ncdu, ufw, vcgencmd, inxi, hdparm, xclip, nmap, htop, glances
-#
+# Prerequisites:
+# sudo apt install exa glances hdparm htop inxi ncdu nmap trash-cli tree ufw vcgencmd xclip
 # ===============
 
 # Basics
@@ -17,7 +17,7 @@ alias c='clear'
 alias e='exit'
 alias rb='reboot'
 alias sd='sudo shutdown now'
-alias lo='loginctl terminate-user $USER'
+alias logout='loginctl terminate-user $USER'
 alias s='sudo -i'
 
 # Maintenance
@@ -38,7 +38,7 @@ alias df='df -h'
 alias du='du -h'
 alias fw='sudo ufw status numbered'
 alias temp='/opt/vc/bin/vcgencmd measure_temp'
-alias specs='inxi -a'
+alias specs='inxi -F'
 alias speed='sudo hdparm -Tt'
 alias g='glances'
 alias h='htop'
@@ -62,5 +62,9 @@ alias edpol='nano /home/$USER/.config/polybar/config'
 alias dl='cd ~/Downloads'
 alias rt='cd /'
 function fp () { readlink -f $1 | xclip; }
-# paste with `xclip -o` or Shift+Insert
 alias o='xclip -o'
+
+# Various
+alias ga='git add'
+alias gc='git commit'
+alias lo='libreoffice'
