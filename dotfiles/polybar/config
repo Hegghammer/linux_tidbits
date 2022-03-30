@@ -11,37 +11,26 @@
 # ============
 
 [colors]
-# dark-grey-green w transparency
-main_background = #9973715e
-# black
-main_foreground = #000000
-# medium grey
-foreground-alt = #555
-# orange
-contrast = #ffb52a
-
-# light grey
-contrast2 = #CC73715e
-
-# dark pink
-secondary = #e60053
-# green
-working = #008000
-# red
-error = #f00
-# white
-focused_foreground = #ffffff
-# dark_grey
-focused_background = #3f3f3f
+dark-grey-green = #9973715e
+black = #000000
+medium_grey = #555
+orange = #ffb52a
+dark_pink = #e60053
+green = #008000
+red = #f00
+white = #ffffff
+light_grey = #CC73715e
+dark_grey = #3f3f3f
+yellow = #ffe135
 
 [bar/myBar1]
 width = 100%
 height = 30
 fixed-center = false
-background = ${colors.main_background}
-foreground = ${colors.main_foreground}
+background = ${colors.dark-grey-green}
+foreground = ${colors.black}
 separator = |
-separator-foreground = ${colors.contrast}
+separator-foreground = ${colors.orange}
 
 # space between bar and screen edge
 border-size = 0
@@ -64,11 +53,12 @@ font-2 = siji:pixelsize=15;1
 font-3 = FontAwesome:pixelsize=14;0
 
 modules-left = i3
-modules-right = memory cpu temperature wired-network wireless-network pulseaudio date
+modules-center = date
+modules-right = memory cpu temperature wired-network wireless-network pulseaudio
 
 tray-position = right
-tray-padding = 2
-tray-background =  ${colors.contrast2}
+tray-padding = 10
+tray-background =  ${colors.medium_grey}
 
 #;wm-restack = bspwm
 #wm-restack = i3
@@ -94,32 +84,36 @@ format-padding = 0
 format = <label-state> <label-mode>
 label-mode = %name%
 label-mode-padding = 0
-label-mode-background = ${colors.secondary}
+label-mode-background = ${colors.medium_grey}
 label-focused = %name%
-label-focused-foreground = ${colors.focused_foreground}
-label-focused-background = ${colors.focused_background}
+label-focused-foreground = ${colors.orange}
+label-focused-background = ${colors.black}
 label-focused-padding = 2
+label-unfocused-background = ${colors.medium_grey}
+label-unfocused-foreground = ${colors.black}
 label-unfocused = %name%
 label-unfocused-padding = 2
 label-visible = %name%
 label-visible-padding = 2
 label-urgent = %name%
-label-urgent-background = ${colors.error}
+label-urgent-background = ${colors.green}
 label-urgent-padding = 2
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = "RAM:"
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.light_grey}
 label = %percentage_used%%
+label-foreground = ${colors.white}
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = "CPU:"
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.light_grey}
 label = %percentage%%
+label-foreground = ${colors.white}
 
 [module/temperature]
 type = internal/temperature
@@ -128,40 +122,42 @@ warn-temperature = 60
 format = <label>
 label = %temperature-c%
 format-prefix = " CPU "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.light_grey}
+label-foreground = ${colors.white}
+
 
 [module/wired-network]
 type = internal/network
-interface = enp6s0
+interface = enp7s0
 interval = 3.0
 accumulate-stats = true
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 label-connected =  ethernet
-label-connected-foreground = ${colors.working}
+label-connected-foreground = ${colors.green}
 label-disconnected = no ethernet
-label-disconnected-foreground = ${colors.error}
+label-disconnected-foreground = ${colors.red}
 
 [module/wireless-network]
 type = internal/network
-interface = wlp5s0
+interface = wlp6s0
 interval = 3.0
 accumulate-stats = true
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 label-connected =   %essid%
-label-connected-foreground = ${colors.working}
+label-connected-foreground = ${colors.green}
 label-disconnected = no wifi
-label-disconnected-foreground = ${colors.error}
+label-disconnected-foreground = ${colors.red}
 
 [module/pulseaudio]
 # Not entirely sure if this works as it should
 type = internal/pulseaudio
 format-volume = <label-volume> <bar-volume>
 label-volume =  %percentage%%
-label-volume-foreground = ${root.foreground}
+label-volume-foreground = ${colors.white}
 label-muted = muted
-label-muted-foreground = #666
+label-muted-foreground = ${colors.red}
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
@@ -172,47 +168,22 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator-font = 10
 bar-volume-fill = ─
-bar-volume-fill-font = 2
+bar-volume-fill-font = 10
 bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-font = 10
+bar-volume-empty-foreground = ${colors.black}
 
 [module/date]
 type = internal/date
 interval = 5
-date = "%d %b %Y"
+date = "%d %B %Y"
 date-alt = " %Y-%m-%d"
-time = %H:%M
+time = %H:%M:%S
 time-alt = %H:%M:%S
 label =  %date% %time%
-
-[module/powermenu]
-type = custom/menu
-expand-right = true
-format-spacing = 1
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+label-foreground = ${colors.yellow}
 
 [settings]
 screenchange-reload = true

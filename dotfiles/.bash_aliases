@@ -4,67 +4,79 @@
 # Thomas Hegghammer
 #
 # Prerequisites:
-# sudo apt install exa glances hdparm htop inxi ncdu nmap trash-cli tree ufw vcgencmd xclip
+# sudo apt install glances hdparm htop inxi ncdu nmap speedtest-cli trash-cli tree ufw unzip xclip zip
+# wget https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip && unzip exa-linux-x86_64-v0.10.0.zip
+# cd exa-linux-x86_64-v0.10.0/bin && sudo mv exa /usr/local/bin
 # ===============
 
-# Basics
-alias l='exa -l'
-alias ll='exa -alFh'
-alias lll='exa -abghHliS'
-alias tr='exa --tree --level=2'
-alias treee='exa --tree --level=2 --long'
+# Session management
 alias c='clear'
+alias rf=". /home/$USER/.bashrc"
 alias e='exit'
 alias rb='reboot'
 alias sd='sudo shutdown now'
 alias logout='loginctl terminate-user $USER'
 alias s='sudo -i'
+alias sc='sudo systemctl'
+
+# Inspection
+alias l='exa -l'
+alias ll='exa -alFh'
+alias lll='exa -abghHliS'
+alias tr='exa --tree --level=2'
+alias treee='exa --tree --level=2 --long'
+alias d='ncdu'
+alias df='df -h'
+alias du='du -h'
+alias dcount='du -sch ./*'
+alias specs='inxi -F'
+alias speed='sudo hdparm -Tt'
+alias g='glances'
+alias h='htop'
+alias fl='filelight'
 
 # Maintenance
 alias up='sudo apt update && sudo apt -y full-upgrade'
+alias ar='sudo apt autoremove'
 alias in='sudo apt -y install'
-alias rem='sudo apt -y remove'
 alias purge='sudo apt --purge remove'
-alias emptydl='cd ~/Downloads && sudo rm -Rf *'
-alias emptybin='sudo trash-empty'
+alias edl='cd /home/$USER/Downloads && sudo rm -Rf *'
+alias ebin='sudo trash-empty'
 
 # Unzip and install
 alias untar='tar -xvzf'
 alias indeb='sudo dpkg -i'
 
-# Inspection
-alias d='ncdu'
-alias df='df -h'
-alias du='du -h'
-alias fw='sudo ufw status numbered'
-alias temp='/opt/vc/bin/vcgencmd measure_temp'
-alias specs='inxi -F'
-alias speed='sudo hdparm -Tt'
-alias g='glances'
-alias h='htop'
-
 # Networking
+alias fw='sudo ufw status numbered'
+alias st='speedtest'
 alias myip='curl https://ipecho.net/plain ; echo'
 alias scanw='sudo nmap -sP 192.168.68.0/24' # network-specific
 alias scane='sudo nmap -sP 10.0.0.0/24' # network-specific
+alias ping='ping -c 4'
+alias sshconf='sudo nano /etc/ssh/sshd_config'
 
 # Editing
 alias n='nano'
-alias edal='nano ~/.bash_aliases'
-alias edrc='nano ~/.bashrc'
-alias edpf='nano ~/.bash_profile'
-alias rf=". ~/.bashrc"
+alias k='kwrite'
+alias edal='nano /home/$USER/.bash_aliases'
+alias edrc='nano /home/$USER/.bashrc'
+alias edpf='nano /home/$USER/.bash_profile'
+alias edz='nano /home/$USER/.zshrc'
 alias edi3='nano /home/$USER/.config/i3/config'
 alias edpic='nano /home/$USER/.config/picom/picom.conf'
 alias edpol='nano /home/$USER/.config/polybar/config'
 
 # Navigation
-alias dl='cd ~/Downloads'
-alias rt='cd /'
-function fp () { readlink -f $1 | xclip; }
+alias dl='cd /home/$USER/Downloads'
+function fp () { readlink -f $1 | xclip; } 
+# paste with `xclip -o` or Shift+Insert
 alias o='xclip -o'
+alias pc='pwd | cpy'
+alias cpy='xclip -selection clipboard'
 
 # Various
 alias ga='git add'
 alias gc='git commit'
 alias lo='libreoffice'
+alias wt='curl wttr.in' # for weather
