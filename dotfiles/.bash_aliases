@@ -15,7 +15,7 @@ alias rf=". /home/$USER/.bashrc"
 alias e='exit'
 alias rb='reboot'
 alias sd='sudo shutdown now'
-alias logout='loginctl terminate-user $USER'
+alias lgt='loginctl terminate-user $USER'
 alias s='sudo -i'
 alias sc='sudo systemctl'
 
@@ -54,18 +54,18 @@ alias myip='curl https://ipecho.net/plain ; echo'
 alias scanw='sudo nmap -sP 192.168.68.0/24' # network-specific
 alias scane='sudo nmap -sP 10.0.0.0/24' # network-specific
 alias ping='ping -c 4'
-alias sshconf='sudo nano /etc/ssh/sshd_config'
+alias sshconf='sudo vim /etc/ssh/sshd_config'
 
 # Editing
-alias n='nano'
+alias n='vim'
 alias k='kwrite'
-alias edal='nano /home/$USER/.bash_aliases'
-alias edrc='nano /home/$USER/.bashrc'
-alias edpf='nano /home/$USER/.bash_profile'
-alias edz='nano /home/$USER/.zshrc'
-alias edi3='nano /home/$USER/.config/i3/config'
-alias edpic='nano /home/$USER/.config/picom/picom.conf'
-alias edpol='nano /home/$USER/.config/polybar/config'
+alias edal='vim /home/$USER/.bash_aliases'
+alias edrc='vim /home/$USER/.bashrc'
+alias edpf='vim /home/$USER/.bash_profile'
+alias edz='vim /home/$USER/.zshrc'
+alias edi3='vim /home/$USER/.config/i3/config'
+alias edpic='vim /home/$USER/.config/picom/picom.conf'
+alias edpol='vim /home/$USER/.config/polybar/config'
 
 # Navigation
 alias dl='cd /home/$USER/Downloads'
@@ -78,5 +78,5 @@ alias cpy='xclip -selection clipboard'
 # Various
 alias ga='git add'
 alias gc='git commit'
-alias lo='libreoffice'
+alias lo='libreoffice --writer'
 alias wt='curl wttr.in' # for weather

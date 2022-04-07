@@ -16,16 +16,17 @@ black = #000000
 medium_grey = #555
 orange = #ffb52a
 dark_pink = #e60053
-green = #008000
+green = #A3FF3F
 red = #f00
 white = #ffffff
+very_light_grey = #f3f4f7
 light_grey = #CC73715e
 dark_grey = #3f3f3f
 yellow = #ffe135
 
 [bar/myBar1]
 width = 100%
-height = 30
+height = 28
 fixed-center = false
 background = ${colors.dark-grey-green}
 foreground = ${colors.black}
@@ -44,13 +45,11 @@ module-margin-left = 1
 module-margin-right = 1
 
 # main text
-font-0 = Inconsolata:pixelsize=13;1 
-# volume bar (I think) 
-font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
-# coloured underlines (I think)
-font-2 = siji:pixelsize=15;1
+font-0 = mononoki Nerd Font:style=Bold:pixelsize=13;3 
+# volume bar 
+font-1 = unifont:fontformat=truetype:size=13:antialias=false;3
 # Icons
-font-3 = FontAwesome:pixelsize=14;0
+#font-3 = FontAwesome:pixelsize=12;3
 
 modules-left = i3
 modules-center = date
@@ -103,17 +102,17 @@ label-urgent-padding = 2
 type = internal/memory
 interval = 2
 format-prefix = "RAM:"
-format-prefix-foreground = ${colors.light_grey}
+format-prefix-foreground = ${colors.black}
 label = %percentage_used%%
-label-foreground = ${colors.white}
+label-foreground = ${colors.very_light_grey}
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = "CPU:"
-format-prefix-foreground = ${colors.light_grey}
+format-prefix-foreground = ${colors.black}
 label = %percentage%%
-label-foreground = ${colors.white}
+label-foreground = ${colors.very_light_grey}
 
 [module/temperature]
 type = internal/temperature
@@ -122,8 +121,8 @@ warn-temperature = 60
 format = <label>
 label = %temperature-c%
 format-prefix = " CPU "
-format-prefix-foreground = ${colors.light_grey}
-label-foreground = ${colors.white}
+format-prefix-foreground = ${colors.black}
+label-foreground = ${colors.very_light_grey}
 
 
 [module/wired-network]
@@ -155,7 +154,7 @@ label-disconnected-foreground = ${colors.red}
 type = internal/pulseaudio
 format-volume = <label-volume> <bar-volume>
 label-volume =  %percentage%%
-label-volume-foreground = ${colors.white}
+label-volume-foreground = ${colors.very_light_grey}
 label-muted = muted
 label-muted-foreground = ${colors.red}
 bar-volume-width = 10
@@ -178,11 +177,11 @@ bar-volume-empty-foreground = ${colors.black}
 [module/date]
 type = internal/date
 interval = 5
-date = "%d %B %Y"
+date = "%e %B %Y"
 date-alt = " %Y-%m-%d"
 time = %H:%M:%S
 time-alt = %H:%M:%S
-label =  %date% %time%
+label = %date% %time%
 label-foreground = ${colors.yellow}
 
 [settings]
@@ -197,4 +196,4 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosini
+vim:ft=dosini
