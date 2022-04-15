@@ -23,7 +23,7 @@ set $myFileManager nautilus
 set $myNoteOrganizer ~/.joplin/Joplin.AppImage
 set $myTextEditor codium
 set $myNotepad gedit
-set $myNotepad2 vim
+set $myNotepad2 terminator -p vim -e vim 
 set $mySettings gnome-control-center
 
 # ===== Power manager (for laptops)
@@ -41,10 +41,11 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 # ===== Compositor
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 
-# ===== Nextcloud, Dropbox, Flameshot
+# ===== Nextcloud, Dropbox, Flameshot, Protonmail
 exec --no-startup-id /home/thomas/applications/nextcloud-app/Nextcloud-3.4.4-x86_64.AppImage
 exec --no-startup-id /home/thomas/.dropbox-dist/dropboxd
 exec --no-startup-id flameshot
+exec --no-startup-id protonmail-bridge
 
 # ===== Startup applications
 #exec --no-startup-id i3-msg 'workspace 1:term ; exec $myTerm'
@@ -55,6 +56,10 @@ exec --no-startup-id flameshot
 
 # ===== Window title font 
 font pango:Inconsolata 10
+
+# Switch between languages
+exec --no-startup-id "setxkbmap -model pc105 -layout no,ar -option grp:alt_shift_toggle"
+bindsym $mod+y exec xkblayout-state set $(( $(xkblayout-state print %c) ^ 1 ))
 
 # Adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -88,7 +93,7 @@ bindsym Ctrl+Shift+f exec $myFileManager
 bindsym Ctrl+Shift+r exec rstudio
 bindsym Ctrl+Shift+a exec $myTextEditor
 bindsym Ctrl+Shift+g exec signal-desktop
-bindsym Ctrl+Shift+z exec /bin/zsh /opt/zotero/zotero
+bindsym Ctrl+Shift+z exec /bin/bash /opt/zotero/zotero
 bindsym Ctrl+Shift+j exec $myNoteOrganizer
 bindsym Ctrl+Shift+k exec $myNotepad
 bindsym Ctrl+Shift+v exec $myNotepad2
@@ -97,6 +102,9 @@ bindsym Ctrl+Shift+1 exec $myTerm -e htop
 bindsym Ctrl+Shift+2 exec $myTerm -e glances
 bindsym Ctrl+Shift+3 exec $myTerm -e nmtui
 bindsym Ctrl+Shift+4 exec $myTerm -e nm-connection-editor
+bindsym Print exec flameshot screen --number 1 -p ~/Pictures/screenshots
+bindsym Ctrl+Print exec flameshot gui
+
 
 # ===== lock computer with CTRL+L
 bindsym $mod+l exec /home/thomas/.config/i3/lockscreen.sh

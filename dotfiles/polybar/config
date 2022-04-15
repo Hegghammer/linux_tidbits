@@ -61,7 +61,7 @@ tray-background =  ${colors.medium_grey}
 
 #;wm-restack = bspwm
 #wm-restack = i3
-override-redirect = true
+#override-redirect = true
 #scroll-up = i3wm-wsnext
 #scroll-down = i3wm-wsprev
 

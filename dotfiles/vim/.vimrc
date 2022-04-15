@@ -10,66 +10,47 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
 " Based largely on https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/
 
-" VUNDLE settings
+" vim.plug settings
+"https://github.com/junegunn/vim-plug
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-"Plugin 'vim-pandoc/vim-pandoc'
-"Plugin 'vim-pandoc/vim-pandoc-syntax' 
-Plugin 'vim-pandoc/vim-markdownfootnotes'
-Plugin 'preservim/nerdtree'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
+" Make sure you use single quotes
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+"Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc-syntax' 
+"Plug 'vim-pandoc/vim-markdownfootnotes'
+Plug 'derdennis/vim-markdownfootnotes'
+Plug 'preservim/nerdtree'
+Plug 'junegunn/goyo.vim'
+Plug 'preservim/vim-pencil'
+Plug 'junegunn/limelight.vim'
+Plug 'savq/melange'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'jremmen/vim-ripgrep'
+" Initialize plugin system
+call plug#end()
 
 """"""""""""""""""""""""""""
+" Encoding stuff
+set encoding=utf-8
+set arabicshape
+
+" to avoid linebreaks in mail
+setlocal fo+=aw
 
 " Set color scheme
-colorscheme morning
+"colorscheme morning
+set background=dark
+set termguicolors
+colorscheme melange
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -90,10 +71,10 @@ syntax on
 "set number
 
 " Highlight cursor line underneath the cursor horizontally.
-set cursorline
+set nocursorline
 
 " Highlight cursor line underneath the cursor vertically.
-"set cursorcolumn
+set nocursorcolumn
 
 " Set shift width to 4 spaces.
 set shiftwidth=4
@@ -103,6 +84,9 @@ set tabstop=4
 
 " Use space characters instead of tabs.
 set expandtab
+
+" Make scrolling fast
+set ttyfast lazyredraw
 
 " Do not save backup files.
 set nobackup
@@ -136,7 +120,7 @@ set showmatch
 set hlsearch
 
 " Set the commands to save in history default number is 20.
-set history=1000
+set history=200
 
 " Enable auto completion menu after pressing TAB.
 set wildmenu
@@ -181,14 +165,6 @@ nnoremap N Nzz
 " Yank from cursor to the end of line.
 nnoremap Y y$
 
-" Map the F5 key to run a Python script inside Vim.
-" We map F5 to a chain of commands here.
-" :w saves the file.
-" <CR> (carriage return) is like pressing the enter key.
-" !clear runs the external clear screen command.
-" !python3 % executes the current file with Python.
-nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
-
 " You can split the window in Vim by typing :split or :vsplit.
 " Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
 nnoremap <c-j> <c-w>j
@@ -203,12 +179,77 @@ noremap <c-down> <c-w>-
 noremap <c-left> <c-w>>
 noremap <c-right> <c-w><
 
-" NERDTree specific mappings.
-" Map the F3 key to toggle NERDTree open and close.
-nnoremap <F3> :NERDTreeToggle<cr>
-
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
+
+"markdownfootnotes
+nnoremap <leader>c :FootnoteNumber
+nnoremap <leader>d :FootnoteUndo
+nnoremap <leader>p :FootnoteRestore
+
+"Goyo
+let g:limelight_conceal_ctermfg = 'Grey'
+let g:limelight_default_coefficient = 0.6
+
+"Goyo + Limelight
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" F keys
+
+" F1 to toggle line number
+set number
+nnoremap <F1> :set nonumber!<CR>
+
+" F2 to toggle NerdTree
+nnoremap <F3> :NERDTreeToggle<cr> 
+
+" F4 to toggle Goyo
+noremap <F4> :Goyo<CR>
+
+" F5 to toggle cursor lines
+fu! ToggleCurline ()
+  if &cursorline && &cursorcolumn
+    set nocursorline
+    set nocursorcolumn
+  else
+    set cursorline
+    set cursorcolumn
+  endif
+endfunction
+
+map <silent><F5> :call ToggleCurline()<CR>
+
+" F8 to run a python script inside Vim
+nnoremap <F8> :w <CR>:!clear <CR>:!python3 % <CR>
+
+
+" F9 and F10 to toggle dark/light
+nnoremap <F9> :set background=dark <CR>
+nnoremap <F10> :set background=light <CR>
+
+" F11 already toggles fullscreen
+
+" Arabic
+" from https://andreasmhallberg.github.io/typing-arabic-in-vim/
+" Switch to English - mapping
+nnoremap <Leader>e :<C-U>call EngType()<CR>
+" Switch to Arabic - mapping
+nnoremap <Leader>a :<C-U>call AraType()<CR>
+
+" Switch to English - function
+function! EngType()
+" To switch back from Arabic
+  set keymap= " Restore default (US) keyboard layout
+  set norightleft
+endfunction
+
+" Switch to Arabic - function
+function! AraType()
+    set keymap=arabic-pc "Modified keymap. File in ~/.vim/keymap/
+    set rightleft
+endfunction
+
 
 " }}}
 
@@ -243,14 +284,17 @@ augroup END
 if has('gui_running')
 
     " Set the background tone.
-    set background=dark
+    "set background=dark
+
+    set encoding=utf-8
+    set arabicshape
 
     " Set the color scheme.
-    colorscheme molokai
+    colorscheme morning
 
     " Set a custom font you have installed on your computer.
     " Syntax: <font_name>\ <weight>\ <size>
-    set guifont=Mononoki\ Regular\ 12
+    set guifont=Courier\ New\ 14
 
     " Display more of the file by default.
     " Hide the toolbar.
@@ -271,7 +315,7 @@ if has('gui_running')
     " Map the F4 key to toggle the menu, toolbar, and scroll bar.
     " <Bar> is the pipe character.
     " <CR> is the enter key.
-    nnoremap <F4> :if &guioptions=~#'mTr'<Bar>
+    nnoremap <F9> :if &guioptions=~#'mTr'<Bar>
         \set guioptions-=mTr<Bar>
         \else<Bar>
         \set guioptions+=mTr<Bar>
