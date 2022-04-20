@@ -26,15 +26,28 @@ call plug#begin()
 Plug 'junegunn/vim-easy-align'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-pandoc/vim-pandoc-syntax' 
-"Plug 'vim-pandoc/vim-markdownfootnotes'
-Plug 'derdennis/vim-markdownfootnotes'
+Plug 'vim-pandoc/vim-markdownfootnotes'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'preservim/vim-pencil'
 Plug 'junegunn/limelight.vim'
+
+" theme
 Plug 'savq/melange'
+
+" fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf.vim'
+
+" to remove search highlight
+Plug 'romainl/vim-cool' 
+
+" to easily comment out lines
+Plug 'tpope/vim-commentary'
+
+" preview markdown
+Plug 'shime/vim-livedown'
+
 " Initialize plugin system
 call plug#end()
 
@@ -84,6 +97,10 @@ set tabstop=4
 
 " Use space characters instead of tabs.
 set expandtab
+
+" change the direction of new splits
+set splitbelow
+set splitright
 
 " Make scrolling fast
 set ttyfast lazyredraw
@@ -183,9 +200,9 @@ noremap <c-right> <c-w><
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
 
 "markdownfootnotes
-nnoremap <leader>c :FootnoteNumber
+nnoremap <leader>n :FootnoteNumber
 nnoremap <leader>d :FootnoteUndo
-nnoremap <leader>p :FootnoteRestore
+nnoremap <leader>t :FootnoteRestore
 
 "Goyo
 let g:limelight_conceal_ctermfg = 'Grey'
@@ -195,11 +212,16 @@ let g:limelight_default_coefficient = 0.6
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
+" Livedown
+nmap gm :LivedownToggle<CR>
+" View at http://10.0.33.105:1337
+
 " F keys
 
 " F1 to toggle line number
-set number
-nnoremap <F1> :set nonumber!<CR>
+set nonumber
+nnoremap <F2> :set nonumber!<CR>
+
 
 " F2 to toggle NerdTree
 nnoremap <F3> :NERDTreeToggle<cr> 
@@ -343,3 +365,33 @@ set statusline+=\ row:\ %l\ col:\ %c\ percent:\ %p%%
 set laststatus=2
 
 " }}}
+
+
+" === fzf bibtex
+" https://github.com/msprev/fzf-bibtex
+
+let $FZF_BIBTEX_CACHEDIR = '/home/thomas/vault/fzf-bib-cache'
+let $FZF_BIBTEX_SOURCES = '/home/thomas/heggcloud-snap/Documents/work-passive/reference_files/pandoc/master.bib'
+
+function! s:bibtex_cite_sink(lines)
+    let r=system("bibtex-cite ", a:lines)
+    execute ':normal! a' . r
+endfunction
+
+function! s:bibtex_markdown_sink(lines)
+    let r=system("bibtex-markdown ", a:lines)
+    execute ':normal! a' . r
+endfunction
+
+nnoremap <silent> <leader>c :call fzf#run({
+                        \ 'source': 'bibtex-ls',
+                        \ 'sink*': function('<sid>bibtex_cite_sink'),
+                        \ 'up': '40%',
+                        "\ 'options': '--ansi --layout=reverse-list --multi --prompt "Cite> "'})<CR>
+                        \ 'options': '--ansi --multi --prompt "Cite> "'})<CR>
+nnoremap <silent> <leader>m :call fzf#run({
+                        \ 'source': 'bibtex-ls',
+                        \ 'sink*': function('<sid>bibtex_markdown_sink'),
+                        \ 'up': '40%',
+                        "\ 'options': '--ansi --layout=reverse-list --multi --prompt "Markdown> "'})<CR>
+                        \ 'options': '--ansi --multi --prompt "Markdown> "'})<CR>

@@ -94,6 +94,7 @@ bindsym Ctrl+Shift+r exec rstudio
 bindsym Ctrl+Shift+a exec $myTextEditor
 bindsym Ctrl+Shift+g exec signal-desktop
 bindsym Ctrl+Shift+z exec /bin/bash /opt/zotero/zotero
+bindsym Ctrl+Shift+i exec /home/$USER/applications/icedrive/Icedrive_Portable_Linux-x64.AppImage
 bindsym Ctrl+Shift+j exec $myNoteOrganizer
 bindsym Ctrl+Shift+k exec $myNotepad
 bindsym Ctrl+Shift+v exec $myNotepad2
@@ -102,9 +103,8 @@ bindsym Ctrl+Shift+1 exec $myTerm -e htop
 bindsym Ctrl+Shift+2 exec $myTerm -e glances
 bindsym Ctrl+Shift+3 exec $myTerm -e nmtui
 bindsym Ctrl+Shift+4 exec $myTerm -e nm-connection-editor
-bindsym Print exec flameshot screen --number 1 -p ~/Pictures/screenshots
+bindsym Print exec flameshot full -p ~/Pictures/screenshots
 bindsym Ctrl+Print exec flameshot gui
-
 
 # ===== lock computer with CTRL+L
 bindsym $mod+l exec /home/thomas/.config/i3/lockscreen.sh
@@ -143,6 +143,10 @@ bindsym $mod+e layout toggle split
 
 # ===== toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+
+# ===== floating window size
+floating_minimum_size 500 x 300
+floating_maximum_size -1 x -1
 
 # ===== change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -239,9 +243,9 @@ mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Down resize grow height 500 px or 500 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Right resize grow width 800 px or 800 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"

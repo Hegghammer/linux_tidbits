@@ -116,7 +116,7 @@ fi
 reset
 #neofetch
 # Following is Debian/Ubuntu-specific:
-YELLOW='\033[0;33m'
+YELLOW='\033[0;93m'
 STAMP="$(stat -c %Y '/var/cache/apt')"
 LAST="$(date -d @$STAMP -u '+%A %e %B at %H:%M')"
 echo -e "${YELLOW}Last apt update: $LAST\n"

@@ -71,7 +71,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -84,7 +83,6 @@ alias l='ls -CF'
 alias e='exit'
 alias rf='source ~/.bashrc'
 alias edrc='nano ~/.bashrc'
-
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -102,6 +100,6 @@ fi
 #    . /etc/bash_completion
 #fi
 
-YELLOW='\033[0;33m'
+YELLOW='\033[0;93m'
 echo -e "${YELLOW}CAREFUL! You are now root\n"
 

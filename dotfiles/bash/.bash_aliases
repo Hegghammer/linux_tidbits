@@ -4,7 +4,7 @@
 # Thomas Hegghammer
 #
 # Prerequisites:
-# sudo apt install glances hdparm htop inxi ncdu nmap speedtest-cli trash-cli tree ufw unzip xclip zip
+# sudo apt install bc glances hdparm htop inxi ncdu nmap speedtest-cli trash-cli tree ufw unzip xclip zip
 # wget https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip && unzip exa-linux-x86_64-v0.10.0.zip
 # cd exa-linux-x86_64-v0.10.0/bin && sudo mv exa /usr/local/bin
 # ===============
@@ -15,7 +15,7 @@ alias rf=". /home/$USER/.bashrc"
 alias e='exit'
 alias rb='reboot'
 alias sd='sudo shutdown now'
-alias lgt='loginctl terminate-user $USER'
+alias lgt='loginctl terminate-user $USER' # Alternatively: alias lgt='gnome-session-quit'
 alias s='sudo -i'
 alias sc='sudo systemctl'
 
@@ -37,11 +37,18 @@ alias fl='filelight'
 
 # Maintenance
 alias up='sudo apt update && sudo apt -y full-upgrade'
-alias ar='sudo apt autoremove'
+alias ar='sudo apt -y autoremove'
 alias in='sudo apt -y install'
 alias purge='sudo apt --purge remove'
-alias edl='cd /home/$USER/Downloads && sudo rm -Rf *'
+alias edl='cd /home/$USER/Downloads && sudo rm -rf *'
 alias ebin='sudo trash-empty'
+
+# Systemd
+alias status='sudo systemctl status'
+alias start='sudo systemctl start'
+alias stop='sudo systemctl stop'
+alias enable='sudo systemctl enable'
+alias disable='sudo systemctl disable'
 
 # Unzip and install
 alias untar='tar -xvzf'
@@ -57,8 +64,9 @@ alias ping='ping -c 4'
 alias sshconf='sudo vim /etc/ssh/sshd_config'
 
 # Editing
-alias n='vim'
-alias k='kwrite'
+alias n='nano'
+alias v='vim'
+alias g='gedit' 
 alias edal='vim /home/$USER/.bash_aliases'
 alias edrc='vim /home/$USER/.bashrc'
 alias edpf='vim /home/$USER/.bash_profile'
@@ -66,6 +74,7 @@ alias edz='vim /home/$USER/.zshrc'
 alias edi3='vim /home/$USER/.config/i3/config'
 alias edpic='vim /home/$USER/.config/picom/picom.conf'
 alias edpol='vim /home/$USER/.config/polybar/config'
+alias edm='vim /home/$USER/.mutt/muttrc'
 
 # Navigation
 alias dl='cd /home/$USER/Downloads'
@@ -79,4 +88,9 @@ alias cpy='xclip -selection clipboard'
 alias ga='git add'
 alias gc='git commit'
 alias lo='libreoffice --writer'
-alias wt='curl wttr.in' # for weather
+alias w='finger <CITY>~270@graph.no' # weather
+alias bc='bc -l' # calculator
+alias map='telnet mapscii.me'
+alias j='joplin' # requires install; see https://joplinapp.org/terminal/ 
+alias m='neomutt' # requires install
+alias rg='. ranger' # requires install
