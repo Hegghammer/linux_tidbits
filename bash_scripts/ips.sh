@@ -15,7 +15,11 @@ curl https://ipecho.net/plain ; echo
 # LAN ips
 echo
 echo -e "${GREEN}LAN ips:${OFF}"
-ip a | grep 'inet ' | awk '{print $2}' | sed '/127.0.0.1\/8/d'
+ip a | 
+    grep 'inet ' | 
+    awk '{print $2}' | 
+    sed '/127.0.0.1\/8/d' | 
+    awk -F '/' '{print $1}'
 echo
 
 exit 0
