@@ -1,6 +1,0 @@
-#!/usr/bin/bash
-# Quick function to make a random password of n characters 
-# Move to $PATH (e.g. /home/$USER/.local/bin/) and make executable
-# Usage: 'pwgen 30'
-
-tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' < /dev/urandom | head -c $1  | xclip -selection c ; echo "Password of ${1} characters pasted to clipboard."
