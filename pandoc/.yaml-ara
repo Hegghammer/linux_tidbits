@@ -1,0 +1,13 @@
+---
+title: My title
+lang: en
+author: Thomas Hegghammer
+#mainfont: DejaVuSans.ttf
+date: 1 January 2022
+header-includes:
+  - |
+    ```{=latex}
+    \babelfont[arabic]{rm}[Scale=1.7]{Scheherazade}
+    ```
+#To use this, remove --template eisvogel from .vimrc and add --pdf-engine xelatex
+---

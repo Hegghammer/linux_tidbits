@@ -1,0 +1,16 @@
+---
+title: A Book
+subtitle: With A Subtitle
+author: Mark Down
+documentclass: extarticle
+fontsize: 11pt
+fontfamily: dejavu
+numbersections: false
+toc-own-page: true
+titlepage: false
+#titlepage-text-color: "333333"
+#titlepage-rule-color: "00737C"
+papersize: a4
+disable-header-and-footer: true
+footnotes-pretty: true
+---
