@@ -29,6 +29,9 @@ set $mySettings gnome-control-center
 # ===== Power manager (for laptops)
 #exec --no-startup-id xfce4-power-manager
 
+# ===== Network manager
+exec --no-startup-id nm-applet
+
 # keep gnome-tweaks settings
 exec --no-startup-id /usr/libexec/gsd-xsettings
 
@@ -90,7 +93,7 @@ bindsym $mod+Shift+d exec --no-startup-id morc_menu
 bindsym $mod+Return exec $myTerm
 bindsym Ctrl+Shift+w exec $myBrowser
 bindsym Ctrl+Shift+f exec $myFileManager
-bindsym Ctrl+Shift+r exec rstudio
+bindsym Ctrl+Shift+r exec rstudio --no-sandbox 
 bindsym Ctrl+Shift+a exec $myTextEditor
 bindsym Ctrl+Shift+g exec signal-desktop
 bindsym Ctrl+Shift+z exec /bin/bash /opt/zotero/zotero
@@ -110,7 +113,7 @@ bindsym Ctrl+Print exec flameshot gui
 bindsym $mod+l exec /home/thomas/.config/i3/lockscreen.sh
 
 # ===== auto lock after 5 mins of inactivity
-exec_always xautolock -detectsleep -time 5 -locker "i3lock -c 191919"
+exec_always xautolock -detectsleep -time 15 -locker "i3lock -c 191919"
 
 # ===== auto suspend after 8 mins (most relevant for laptops). Requires big swapfile
 #exec_always xautolock -time 8 -locker "systemctl suspend"
@@ -165,7 +168,7 @@ set $ws2 "2:web "
 set $ws3 "3:files "
 set $ws4 "4:write "
 set $ws5 "5:code "
-set $ws6 "6:media "
+set $ws6 "6:email "
 set $ws7 "7:social "
 set $ws8 "8:joplin J"
 set $ws9 "9:zotero Z"
@@ -242,9 +245,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg e
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Left resize shrink width 800 px or 800 ppt
         bindsym Down resize grow height 500 px or 500 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Up resize shrink height 500 px or 500 ppt
         bindsym Right resize grow width 800 px or 800 ppt
 
         # back to normal: Enter or Escape or $mod+r

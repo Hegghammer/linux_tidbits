@@ -8,22 +8,13 @@
 "                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 "               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
+
 " Based largely on https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/
 
-" vim.plug settings
-"https://github.com/junegunn/vim-plug
+"========== PLUGINS (vim.plug)
 call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
 
-" Make sure you use single quotes
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+"Plug 'junegunn/vim-easy-align'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-pandoc/vim-pandoc-syntax' 
 Plug 'vim-pandoc/vim-markdownfootnotes'
@@ -31,39 +22,22 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'preservim/vim-pencil'
 Plug 'junegunn/limelight.vim'
-
-" theme
+Plug 'preservim/vim-markdown'
 Plug 'savq/melange'
-
-" fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" to remove search highlight
+" to remove search highlight:
 Plug 'romainl/vim-cool' 
-
-" to easily comment out lines
+" to easily comment out lines (gc on selection):
 Plug 'tpope/vim-commentary'
-
-" preview markdown
+" preview markdown (gm):
 Plug 'shime/vim-livedown'
+" PDF preview (leader-p):
+Plug 'conornewton/vim-pandoc-markdown-preview'
 
-" Initialize plugin system
 call plug#end()
 
-""""""""""""""""""""""""""""
-" Encoding stuff
-set encoding=utf-8
-set arabicshape
-
-" to avoid linebreaks in mail
-setlocal fo+=aw
-
-" Set color scheme
-"colorscheme morning
-set background=dark
-set termguicolors
-colorscheme melange
+"========== SYSTEM
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -77,11 +51,65 @@ filetype plugin on
 " Load an indent file for the detected file type.
 filetype indent on
 
+" Do not save backup files.
+set nobackup
+
+" While searching though a file incrementally highlight matching characters as you type.
+set incsearch
+
+" Ignore capital letters during search.
+set ignorecase
+
+" Override the ignorecase option if searching for capital letters.
+" This will allow you to search specifically for capital letters.
+set smartcase
+
+" Show matching words during a search.
+set showmatch
+
+" Use highlighting when doing a search.
+set hlsearch
+
+" Set the commands to save in history default number is 20.
+set history=20
+
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" There are certain files that we would never want to edit with Vim.
+" Wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+" If Vim version is equal to or greater than 7.3 enable undofile.
+" This allows you to undo changes to a file even after saving it.
+if version >= 703
+    set undodir=~/.vim/undodir
+    set undofile
+    set undoreload=10000
+endif
+
+"========== AESTHETICS
+
+" Encoding
+set encoding=utf-8
+set arabicshape
+
+" to avoid linebreaks in mail
+setlocal fo+=aw
+
+" Set color scheme
+set background=dark
+set termguicolors
+colorscheme melange
+
 " Turn syntax highlighting on.
 syntax on
 
 " Add numbers to the file.
-"set number
+set nonumber
 
 " Highlight cursor line underneath the cursor horizontally.
 set nocursorline
@@ -105,52 +133,57 @@ set splitright
 " Make scrolling fast
 set ttyfast lazyredraw
 
-" Do not save backup files.
-set nobackup
-
 " Do not let cursor scroll below or above N number of lines when scrolling.
 "set scrolloff=10
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
 "set nowrap
 
-" While searching though a file incrementally highlight matching characters as you type.
-set incsearch
+" Enable the marker method of folding.
+"augroup filetype_vim
+"    autocmd!
+"    autocmd FileType vim setlocal foldmethod=marker
+"augroup END
 
-" Ignore capital letters during search.
-set ignorecase
+" Disable folding in markdown plugin
+let g:vim_markdown_folding_disabled = 1
 
-" Override the ignorecase option if searching for capital letters.
-" This will allow you to search specifically for capital letters.
-set smartcase
+" Disable regular folding
+set nofoldenable
 
-" Show partial command you type in the last line of the screen.
-set showcmd
+" Highlight YAML front matter as used by Jekyll or Hugo.
+let g:vim_markdown_frontmatter = 1
 
-" Show the mode you are on the last line.
-set showmode
+" allow moving cursor past last character
+set virtualedit=all
 
-" Show matching words during a search.
-set showmatch
+" If the current file type is HTML, set indentation to 2 spaces.
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
 
-" Use highlighting when doing a search.
-set hlsearch
-
-" Set the commands to save in history default number is 20.
-set history=200
-
-" Enable auto completion menu after pressing TAB.
-set wildmenu
-
-" Make wildmenu behave like similar to Bash completion.
-set wildmode=list:longest
-
-" There are certain files that we would never want to edit with Vim.
-" Wildmenu will ignore files with these extensions.
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+" You can split a window into sections by typing `:split` or `:vsplit`.
+" Display cursorline and cursorcolumn ONLY in active window.
+augroup cursor_off
+    autocmd!
+    autocmd WinLeave * set nocursorline nocursorcolumn
+    autocmd WinEnter * set cursorline cursorcolumn
+augroup END
 
 
-" MAPPINGS --------------------------------------------------------------- {{{
+"========== MAPPINGS
+
+" Sort footnotes into order of appearance
+nnoremap <leader>s mm :%! /home/thomas/applications/sort-markdown-footnotes/sort_footnotes<CR> `m :delmarks m<CR>
+
+" Markdown preview
+nnoremap <leader>p :StartMdPreview<CR>
+nnoremap <leader>å :StopMdPreview<CR>
+
+" Default pandoc arguments for PDF preview
+let g:md_args = "--resource-path $PANDOC_DIR --bibliography master.bib --csl chicago17_full.csl --citeproc --listings --template eisvogel"
+
+" move cursor up/down by one actual line 
+nnoremap j gj
+nnoremap k gk
 
 " Set the backslash as the leader key.
 let mapleader = '\'
@@ -162,7 +195,7 @@ nnoremap <leader>\ ``
 " View available printers:   lpstat -v
 " Set default printer:       lpoptions -d <printer_name>
 " <silent> means do not display output.
-nnoremap <silent> <leader>p :%w !lp<CR>
+nnoremap <silent> <leader>P :%w !lp<CR>
 
 " Type jj to exit insert mode quickly.
 inoremap jj <Esc>
@@ -172,8 +205,8 @@ nnoremap <space> :
 
 " Pressing the letter o will open a new line below the current one.
 " Exit insert mode after creating a new line above or below the current line.
-nnoremap o o<esc>
-nnoremap O O<esc>
+"nnoremap o o<esc>
+"nnoremap O O<esc>
 
 " Center the cursor vertically when moving to the next word during a search.
 nnoremap n nzz
@@ -199,26 +232,21 @@ noremap <c-right> <c-w><
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
 
-"markdownfootnotes
-nnoremap <leader>n :FootnoteNumber
-nnoremap <leader>d :FootnoteUndo
-nnoremap <leader>t :FootnoteRestore
-
-"Goyo
+" Goyo config
 let g:limelight_conceal_ctermfg = 'Grey'
 let g:limelight_default_coefficient = 0.6
 
-"Goyo + Limelight
+" Have Limelight appear only with Goyo
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-" Livedown
+" Livedown preview
 nmap gm :LivedownToggle<CR>
-" View at http://10.0.33.105:1337
+" View at http://localhost:1337
 
 " F keys
 
-" F1 to toggle line number
+" F2 to toggle line number
 set nonumber
 nnoremap <F2> :set nonumber!<CR>
 
@@ -243,8 +271,7 @@ endfunction
 map <silent><F5> :call ToggleCurline()<CR>
 
 " F8 to run a python script inside Vim
-nnoremap <F8> :w <CR>:!clear <CR>:!python3 % <CR>
-
+"nnoremap <F8> :w <CR>:!clear <CR>:!python3 % <CR>
 
 " F9 and F10 to toggle dark/light
 nnoremap <F9> :set background=dark <CR>
@@ -272,82 +299,18 @@ function! AraType()
     set rightleft
 endfunction
 
+" From Andreas - Med markören på ett arabisk ord i en markdown-fil i vim, gr i normal 
+" mode för att markera det som arabisk text enligt ovan:
+autocmd FileType markdown,markdown.pandoc,mail nnoremap <buffer>gr lmfbi[<esc>ea]{lang=ar}<esc>`f
 
-" }}}
 
-" VIMSCRIPT -------------------------------------------------------------- {{{
+"========== STATUS LINE
 
-" Enable the marker method of folding.
-"augroup filetype_vim
-"    autocmd!
-"    autocmd FileType vim setlocal foldmethod=marker
-"augroup END
+" Show partial command you type in the last line of the screen.
+set showcmd
 
-" If the current file type is HTML, set indentation to 2 spaces.
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
-
-" If Vim version is equal to or greater than 7.3 enable undofile.
-" This allows you to undo changes to a file even after saving it.
-if version >= 703
-    set undodir=~/.vim/backup
-    set undofile
-    set undoreload=10000
-endif
-
-" You can split a window into sections by typing `:split` or `:vsplit`.
-" Display cursorline and cursorcolumn ONLY in active window.
-augroup cursor_off
-    autocmd!
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
-augroup END
-
-" If GUI version of Vim is running set these options.
-if has('gui_running')
-
-    " Set the background tone.
-    "set background=dark
-
-    set encoding=utf-8
-    set arabicshape
-
-    " Set the color scheme.
-    colorscheme morning
-
-    " Set a custom font you have installed on your computer.
-    " Syntax: <font_name>\ <weight>\ <size>
-    set guifont=Courier\ New\ 14
-
-    " Display more of the file by default.
-    " Hide the toolbar.
-    set guioptions-=T
-
-    " Hide the the left-side scroll bar.
-    set guioptions-=L
-
-    " Hide the the left-side scroll bar.
-    set guioptions-=r
-
-    " Hide the the menu bar.
-    set guioptions-=m
-
-    " Hide the the bottom scroll bar.
-    set guioptions-=b
-
-    " Map the F4 key to toggle the menu, toolbar, and scroll bar.
-    " <Bar> is the pipe character.
-    " <CR> is the enter key.
-    nnoremap <F9> :if &guioptions=~#'mTr'<Bar>
-        \set guioptions-=mTr<Bar>
-        \else<Bar>
-        \set guioptions+=mTr<Bar>
-        \endif<CR>
-
-endif
-
-" }}}
-
-" STATUS LINE ------------------------------------------------------------ {{{
+" Show the mode you are on the last line.
+set showmode
 
 " Clear status line when vimrc is reloaded.
 set statusline=
@@ -364,14 +327,9 @@ set statusline+=\ row:\ %l\ col:\ %c\ percent:\ %p%%
 " Show the status on the second to last line.
 set laststatus=2
 
-" }}}
 
-
-" === fzf bibtex
+" ========== FZF BIBTEX
 " https://github.com/msprev/fzf-bibtex
-
-let $FZF_BIBTEX_CACHEDIR = '/home/thomas/vault/fzf-bib-cache'
-let $FZF_BIBTEX_SOURCES = '/home/thomas/heggcloud-snap/Documents/work-passive/reference_files/pandoc/master.bib'
 
 function! s:bibtex_cite_sink(lines)
     let r=system("bibtex-cite ", a:lines)
