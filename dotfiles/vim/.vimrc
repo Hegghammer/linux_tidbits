@@ -34,7 +34,8 @@ Plug 'tpope/vim-commentary'
 Plug 'shime/vim-livedown'
 " PDF preview (leader-p):
 Plug 'conornewton/vim-pandoc-markdown-preview'
-
+Plug 'vim-scripts/DrawIt'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 "========== SYSTEM
@@ -49,7 +50,7 @@ filetype on
 filetype plugin on
 
 " Load an indent file for the detected file type.
-filetype indent on
+" filetype indent on
 
 " Do not save backup files.
 set nobackup
@@ -250,8 +251,7 @@ nmap gm :LivedownToggle<CR>
 set nonumber
 nnoremap <F2> :set nonumber!<CR>
 
-
-" F2 to toggle NerdTree
+" F3 to toggle NerdTree
 nnoremap <F3> :NERDTreeToggle<cr> 
 
 " F4 to toggle Goyo
@@ -269,6 +269,10 @@ fu! ToggleCurline ()
 endfunction
 
 map <silent><F5> :call ToggleCurline()<CR>
+
+" F6/F7 to turn off/on linewrap
+noremap <F6> :set formatoptions-=t<CR>
+noremap <F7> :set formatoptions+=t<CR>
 
 " F8 to run a python script inside Vim
 "nnoremap <F8> :w <CR>:!clear <CR>:!python3 % <CR>
@@ -353,3 +357,9 @@ nnoremap <silent> <leader>m :call fzf#run({
                         \ 'up': '40%',
                         "\ 'options': '--ansi --layout=reverse-list --multi --prompt "Markdown> "'})<CR>
                         \ 'options': '--ansi --multi --prompt "Markdown> "'})<CR>
+
+" Powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+set laststatus=2

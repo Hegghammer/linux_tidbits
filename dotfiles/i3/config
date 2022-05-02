@@ -100,7 +100,7 @@ bindsym Ctrl+Shift+z exec /bin/bash /opt/zotero/zotero
 bindsym Ctrl+Shift+i exec /home/$USER/applications/icedrive/Icedrive_Portable_Linux-x64.AppImage
 bindsym Ctrl+Shift+j exec $myNoteOrganizer
 bindsym Ctrl+Shift+k exec $myNotepad
-bindsym Ctrl+Shift+v exec $myNotepad2
+#bindsym Ctrl+Shift+v exec $myNotepad2
 bindsym Ctrl+Shift+s exec $mySettings
 bindsym Ctrl+Shift+1 exec $myTerm -e htop
 bindsym Ctrl+Shift+2 exec $myTerm -e glances
