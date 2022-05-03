@@ -36,6 +36,8 @@ Plug 'shime/vim-livedown'
 Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'vim-scripts/DrawIt'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 "========== SYSTEM
@@ -245,6 +247,7 @@ autocmd! User GoyoLeave Limelight!
 nmap gm :LivedownToggle<CR>
 " View at http://localhost:1337
 
+                 
 " F keys
 
 " F2 to toggle line number
@@ -274,8 +277,8 @@ map <silent><F5> :call ToggleCurline()<CR>
 noremap <F6> :set formatoptions-=t<CR>
 noremap <F7> :set formatoptions+=t<CR>
 
-" F8 to run a python script inside Vim
-"nnoremap <F8> :w <CR>:!clear <CR>:!python3 % <CR>
+" F8 to resource .vimrc
+nnoremap <F8> :so ~/.vimrc<CR>
 
 " F9 and F10 to toggle dark/light
 nnoremap <F9> :set background=dark <CR>
@@ -331,6 +334,7 @@ set statusline+=\ row:\ %l\ col:\ %c\ percent:\ %p%%
 " Show the status on the second to last line.
 set laststatus=2
 
+let g:airline_theme='light'
 
 " ========== FZF BIBTEX
 " https://github.com/msprev/fzf-bibtex
@@ -358,8 +362,3 @@ nnoremap <silent> <leader>m :call fzf#run({
                         "\ 'options': '--ansi --layout=reverse-list --multi --prompt "Markdown> "'})<CR>
                         \ 'options': '--ansi --multi --prompt "Markdown> "'})<CR>
 
-" Powerline
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-set laststatus=2
