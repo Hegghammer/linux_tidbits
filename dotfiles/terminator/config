@@ -15,10 +15,10 @@
     cursor_shape = ibeam
     cursor_color = "#ff0000"
     cursor_color_fg = False
-    font = Monospace Expanded 13
+    font = Essential PragmataPro 14
     foreground_color = "#ffffff"
     show_titlebar = False
-    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    palette = "#000000:#ef2929:#7cea17:#e6f908:#ffa348:#75507b:#06989a:#8ff0a4:#555753:#ef2929:#8ae234:#e66100:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     use_system_font = False
     bold_is_bright = True
     copy_on_selection = True
@@ -26,37 +26,43 @@
     icon_bell = False
     cursor_color = "#ff0000"
     cursor_color_fg = False
-    font = Ubuntu Mono 18
+    font = Essential PragmataPro 20
     foreground_color = "#ffffff"
     show_titlebar = False
-    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    palette = "#000000:#ef2929:#7cea17:#f6d32d:#ffa348:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#e66100:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     use_system_font = False
+    bold_is_bright = True
   [[transparent]]
     icon_bell = False
-    background_color = "#deddda"
+    background_color = "#ffffdd"
     background_darkness = 0.7
     background_type = transparent
     cursor_color = "#ff0000"
     cursor_color_fg = False
-    font = Monospace 11
+    font = Essential PragmataPro 13
     foreground_color = "#000000"
     show_titlebar = False
-    palette = "#deddda:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#7c6f64:#928374:#9d0006:#79740e:#b57614:#076678:#8f3f71:#427b58:#3c3836"
+    palette = "#f4f4f4:#cc241d:#327f12:#813d9c:#613583:#b16286:#689d6a:#7c6f64:#928374:#9d0006:#79740e:#b57614:#076678:#8f3f71:#427b58:#3c3836"
     use_system_font = False
+    bold_is_bright = True
     copy_on_selection = True
   [[purple]]
     background_color = "#300a24"
     cursor_color = "#aaaaaa"
-    font = Iosevka Term Semi-Bold Expanded 11
+    font = Essential PragmataPro 13
     foreground_color = "#ffffff"
     show_titlebar = False
-    palette = "#300a24:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#300a24:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    palette = "#300a24:#dc322f:#8fde18:#f6d32d:#f9f06b:#d33682:#2aa198:#eee8d5:#300a24:#cb4b16:#586e75:#dc8add:#839496:#6c71c4:#93a1a1:#fdf6e3"
     use_system_font = False
+    bold_is_bright = True
   [[present]]
     background_color = "#ffffff"
     cursor_color = "#aaaaaa"
+    font = Essential PragmataPro 40
     foreground_color = "#000000"
-    palette = "#ffffff:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#7c6f64:#deddda:#9d0006:#79740e:#b57614:#076678:#8f3f71:#427b58:#3c3836"
+    palette = "#ffffff:#ed333b:#327f12:#813d9c:#458588:#b16286:#689d6a:#7c6f64:#deddda:#9d0006:#79740e:#9141ac:#076678:#8f3f71:#427b58:#3c3836"
+    use_system_font = False
+    bold_is_bright = True
 [layouts]
   [[default]]
     [[[window0]]]

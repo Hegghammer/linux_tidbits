@@ -11,7 +11,7 @@
 
 # Session management
 alias c='clear'
-alias rf=". /home/$USER/.bashrc"
+alias rf=". /home/$USER/.zshrc"
 alias e='exit'
 alias rb='reboot'
 alias sd='sudo shutdown now'
@@ -75,6 +75,7 @@ alias edi3='vim /home/$USER/.config/i3/config'
 alias edpic='vim /home/$USER/.config/picom/picom.conf'
 alias edpol='vim /home/$USER/.config/polybar/config'
 alias edm='vim /home/$USER/.mutt/muttrc'
+alias edv='vim /home/$USER/.zshrc'
 
 # Navigation
 alias dl='cd /home/$USER/Downloads'
